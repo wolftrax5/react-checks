@@ -27,6 +27,12 @@ function ShoppingPage() {
           <ProductTitle title={"Custom Mug"} />
           <ProductButtons />
         </ProductCard>
+
+        <ProductCard product={product}>
+          <ProductCard.Image img="https://upload.wikimedia.org/wikipedia/commons/a/a4/DPPP_5348.jpg" />
+          <ProductCard.Title />
+          <ProductCard.Buttons />
+        </ProductCard>
       </div>
     </div>
   );
