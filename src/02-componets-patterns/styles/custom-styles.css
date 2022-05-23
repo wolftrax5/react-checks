@@ -1,0 +1,21 @@
+:root {
+  --image-padding: 20px;
+}
+.bg-dark {
+  background-color: rgb(56, 56, 56);
+}
+.text-white {
+  color: whitesmoke;
+}
+
+.custom-image {
+  padding: 10px;
+  border-radius: var(--image-padding);
+  width: calc(100% - var(--image-padding));
+}
+
+.custom-buttons button,
+.custom-buttons div {
+  color: whitesmoke;
+  border-color: whitesmoke;
+}
