@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   ProductCard,
   ProductButtons,
@@ -6,64 +5,12 @@ import {
   ProductTitle,
 } from "../components";
 import "../styles/custom-styles.css";
-import { Product } from "../interfaces/interfaces";
+import { products } from "../data/products";
+import { useShoppingCart } from "../hooks/useShoppigCart";
 
-const product1 = {
-  id: "1",
-  title: "Coffee mug",
-  img: "./coffee-mug.png",
-};
-const product2 = {
-  id: "2",
-  title: "Coffee mug",
-  img: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvectorified.com%2Fimages%2Fsublimation-icon-14.png&f=1&nofb=1",
-};
-
-const products: Product[] = [product1, product2];
-interface ProductInCart extends Product {
-  count: number;
-}
 function ShoppingPage() {
-  const [shoppingCart, setShoppingCart] = useState<{
-    [key: string]: ProductInCart;
-  }>({});
+  const { shoppingCart, onProductCountChange } = useShoppingCart();
 
-  const onProductCountChange = ({
-    count,
-    product,
-  }: {
-    count: number;
-    product: Product;
-  }) => {
-    setShoppingCart((oldShoppingCart) => {
-      const productInCard: ProductInCart = oldShoppingCart[product.id] || {
-        ...product,
-        count: 0,
-      };
-      // Agregando 1 producto o Mas
-
-      if (Math.max(productInCard.count + count, 0)) {
-        productInCard.count += count;
-        return {
-          ...oldShoppingCart,
-          [product.id]: productInCard,
-        };
-      }
-      // Borrando el Producto
-      const { [product.id]: toDelete, ...rest } = oldShoppingCart;
-      return rest;
-
-      // SIMPLE SOLUTION El estado lo mandan las Targetas
-      // if (count === 0) {
-      //   const { [product.id]: toDelete, ...rest } = oldShoppingCart;
-      //   return rest;
-      // }
-      // return {
-      //   ...oldShoppingCart,
-      //   [product.id]: { ...product, count },
-      // };
-    });
-  };
   return (
     <div>
       <h1>ShoppingPage</h1>
