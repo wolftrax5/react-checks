@@ -36,14 +36,32 @@ function ShoppingPage() {
     product: Product;
   }) => {
     setShoppingCart((oldShoppingCart) => {
-      if (count === 0) {
-        const { [product.id]: toDelete, ...rest } = oldShoppingCart;
-        return rest;
-      }
-      return {
-        ...oldShoppingCart,
-        [product.id]: { ...product, count },
+      const productInCard: ProductInCart = oldShoppingCart[product.id] || {
+        ...product,
+        count: 0,
       };
+      // Agregando 1 producto o Mas
+
+      if (Math.max(productInCard.count + count, 0)) {
+        productInCard.count += count;
+        return {
+          ...oldShoppingCart,
+          [product.id]: productInCard,
+        };
+      }
+      // Borrando el Producto
+      const { [product.id]: toDelete, ...rest } = oldShoppingCart;
+      return rest;
+
+      // SIMPLE SOLUTION El estado lo mandan las Targetas
+      // if (count === 0) {
+      //   const { [product.id]: toDelete, ...rest } = oldShoppingCart;
+      //   return rest;
+      // }
+      // return {
+      //   ...oldShoppingCart,
+      //   [product.id]: { ...product, count },
+      // };
     });
   };
   return (
@@ -64,6 +82,7 @@ function ShoppingPage() {
               product={product}
               className="bg-dark"
               onChange={onProductCountChange}
+              value={shoppingCart[product.id]?.count || 0}
             >
               <ProductImage className="custom-image" />
               <ProductTitle className="text-white" title={"Custom Mug"} />
@@ -79,6 +98,8 @@ function ShoppingPage() {
                 product={product}
                 className="bg-dark"
                 style={{ width: "100px" }}
+                value={product.count}
+                onChange={onProductCountChange}
               >
                 <ProductImage className="custom-image" />
                 <ProductButtons className="custom-buttons" />
