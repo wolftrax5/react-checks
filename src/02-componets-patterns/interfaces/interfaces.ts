@@ -12,6 +12,7 @@ import {Props as ProductButtonsProps} from "../components/ProductButtons";
     counter: number;
     increaseBy: (value: number) => void;
     product: Product;
+    maxCount?: number
   }
 
 export interface ProductCardHOCProps {
@@ -27,4 +28,8 @@ export interface onChangeArgs {
 }
 export interface ProductInCart extends Product {
   count: number;
+}
+export interface InitialValues {
+  count?: number;
+  maxCount?: number;
 }

@@ -6,55 +6,31 @@ import {
 } from "../components";
 import "../styles/custom-styles.css";
 import { products } from "../data/products";
-import { useShoppingCart } from "../hooks/useShoppigCart";
+
+const product = products[0];
 
 function ShoppingPage() {
-  const { shoppingCart, onProductCountChange } = useShoppingCart();
-
   return (
     <div>
       <h1>ShoppingPage</h1>
       <hr />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
+      <ProductCard
+        key={product.id}
+        product={product}
+        className="bg-dark"
+        initialValues={{
+          count: 4,
+          maxCount: 10,
         }}
       >
-        {products.map((product) => {
-          return (
-            <ProductCard
-              key={product.id}
-              product={product}
-              className="bg-dark"
-              onChange={onProductCountChange}
-              value={shoppingCart[product.id]?.count || 0}
-            >
-              <ProductImage className="custom-image" />
-              <ProductTitle className="text-white" title={"Custom Mug"} />
-              <ProductButtons className="custom-buttons" />
-            </ProductCard>
-          );
-        })}
-        <div className="shopping-cart">
-          {Object.entries(shoppingCart).map(([key, product]) => {
-            return (
-              <ProductCard
-                key={key}
-                product={product}
-                className="bg-dark"
-                style={{ width: "100px" }}
-                value={product.count}
-                onChange={onProductCountChange}
-              >
-                <ProductImage className="custom-image" />
-                <ProductButtons className="custom-buttons" />
-              </ProductCard>
-            );
-          })}
-        </div>
-      </div>
+        {() => (
+          <>
+            <ProductImage className="custom-image" />
+            <ProductTitle className="text-white" title={"Custom Mug"} />
+            <ProductButtons className="custom-buttons" />
+          </>
+        )}
+      </ProductCard>
     </div>
   );
 }
