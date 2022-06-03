@@ -24,9 +24,15 @@ export const useProduct = ({
     setCounter(Math.min(newValue, initialValues?.maxCount || newValue));
     onChange && onChange({ count: newValue, product });
   };
+  const reset = () => {
+    setCounter(initialValues?.count || value);
+  };
   return {
-    increaseBy,
     counter,
+    isMaxCounterReached:
+      !!initialValues?.maxCount && initialValues?.maxCount === counter,
     maxCount: initialValues?.maxCount,
+    increaseBy,
+    reset,
   };
 };
