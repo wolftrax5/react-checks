@@ -17,7 +17,6 @@ function ShoppingPage() {
       <ProductCard
         key={product.id}
         product={product}
-        className="bg-dark"
         initialValues={{
           count: 2,
           maxCount: 12,
@@ -25,18 +24,9 @@ function ShoppingPage() {
       >
         {({ reset, isMaxCounterReached, maxCount, count, increaseBy }) => (
           <>
-            <ProductImage className="custom-image" />
-            <ProductTitle className="text-white" title={"Custom Mug"} />
-            <ProductButtons className="custom-buttons" />
-
-            <button onClick={reset}> Reset</button>
-            <button onClick={() => increaseBy(-2)}>-2</button>
-            {!isMaxCounterReached && (
-              <button onClick={() => increaseBy(2)}>+2</button>
-            )}
-            <span>
-              {count} - {maxCount}
-            </span>
+            <ProductImage />
+            <ProductTitle title={"Custom Mug"} />
+            <ProductButtons />
           </>
         )}
       </ProductCard>
