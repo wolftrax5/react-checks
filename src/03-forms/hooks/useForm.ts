@@ -11,6 +11,10 @@ export const useForm = <T>(initialState:T) =>{
           [e.target.name]: e.target.value,
         }));
       };
+
+      const resetForm= ()=> {
+        setFormData({...initialState})
+      }
     
-    return { ...formData, formData, onChange }
+    return { ...formData, formData, onChange, resetForm}
 }

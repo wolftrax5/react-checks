@@ -3,7 +3,7 @@ import { FormEvent } from "react";
 import { useForm } from "../hooks/useForm";
 
 export const RegisterPage = () => {
-  const { formData, onChange } = useForm({
+  const { formData, onChange, resetForm } = useForm({
     name: "",
     email: "",
     password: "",
@@ -27,7 +27,9 @@ export const RegisterPage = () => {
           placeholder="Name"
           value={name}
           onChange={onChange}
+          className={`${name.trim().length <= 0 && "has-error"}`}
         />
+        {name.trim().length <= 0 && <span>este campo es necesario</span>}
         <input
           type="email"
           name="email"
@@ -54,6 +56,9 @@ export const RegisterPage = () => {
         />
 
         <button type="submit">Register</button>
+        <button type="button" onClick={resetForm}>
+          Reset
+        </button>
       </form>
     </div>
   );
