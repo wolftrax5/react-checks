@@ -29,17 +29,18 @@ export const FormikBasicPage = () => {
     return errors;
   };
 
-  const { handleChange, values, handleSubmit } = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-    },
-    onSubmit(values) {
-      console.log("VAlues", values);
-    },
-    validate,
-  });
+  const { handleChange, values, handleSubmit, errors, touched, handleBlur } =
+    useFormik({
+      initialValues: {
+        firstName: "",
+        lastName: "",
+        email: "",
+      },
+      onSubmit(values) {
+        console.log("VAlues", values);
+      },
+      validate,
+    });
 
   return (
     <div>
@@ -50,10 +51,13 @@ export const FormikBasicPage = () => {
           type="text"
           name="firstName"
           id="firstName"
+          onBlur={handleBlur}
           onChange={handleChange}
           value={values.firstName}
         />
-        <span>First Name is Required</span>
+        {errors.firstName && touched.firstName && (
+          <span className="error-message">{errors.firstName}</span>
+        )}
 
         <label htmlFor="lastName">Last Name</label>
         <input
@@ -61,9 +65,12 @@ export const FormikBasicPage = () => {
           name="lastName"
           id="lastName"
           onChange={handleChange}
+          onBlur={handleBlur}
           value={values.lastName}
         />
-        <span>Last Name is Required</span>
+        {errors.lastName && touched.lastName && (
+          <span className="error-message">{errors.lastName}</span>
+        )}
 
         <label htmlFor="email">Email</label>
         <input
@@ -71,9 +78,12 @@ export const FormikBasicPage = () => {
           name="email"
           id="email"
           onChange={handleChange}
+          onBlur={handleBlur}
           value={values.email}
         />
-        <span> Email is Required</span>
+        {errors.email && touched.email && (
+          <span className="error-message">{errors.email}</span>
+        )}
 
         <button type="submit">Submit</button>
       </form>
