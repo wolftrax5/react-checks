@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { MyTextInput } from "../components/MyTextInput";
+import { MySelect } from "../components/MySelect";
 
 export const FormikComponents = () => {
   return (
@@ -60,16 +61,14 @@ export const FormikComponents = () => {
             </label>
             <ErrorMessage name="terms" component="span" />
 
-            <label htmlFor="jobType">Email</label>
-            <Field name="jobType" as="select">
+            <MySelect name="jobType" label={"Job Type"}>
               <option value=""></option>
               <option value="developer">Developer</option>
               <option value="designer">Designer</option>
               <option value="it-senior">IT Senior</option>
               <option value="it-jnr">IT Junior</option>
               <option value="full-stack">Full Stack</option>
-            </Field>
-            <ErrorMessage name="jobType" component="span" />
+            </MySelect>
 
             <button type="submit">Submit</button>
           </Form>
