@@ -1,11 +1,9 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
-import { MyTextInput } from "../components/MyTextInput";
-import { MySelect } from "../components/MySelect";
-import { MyCheckbox } from "../components/MyCheckbox";
+import { MySelect, MyTextInput, MyCheckbox } from "../components";
 
-export const FormikComponents = () => {
+export const FormikAbstraction = () => {
   return (
     <div>
       <h1>Formik Abstraction</h1>
@@ -75,4 +73,4 @@ export const FormikComponents = () => {
   );
 };
 
-export default FormikComponents;
+export default FormikAbstraction;
