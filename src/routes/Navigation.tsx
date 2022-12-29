@@ -4,6 +4,7 @@ import FormikBasicPage from "../03-forms/pages/FormikBasicPage";
 import FormikComponents from "../03-forms/pages/FormikComponents";
 import FormikYupPage from "../03-forms/pages/FormikYupPage";
 import RegisterPage from "../03-forms/pages/RegisterPage";
+import FormikAbstractaction from "../03-forms/pages/FormikAbstractaction";
 import logo from "../logo.svg";
 
 const activeClass = ({ isActive = false }) => (isActive ? "nav-active" : "");
@@ -40,6 +41,11 @@ export const Navigation = () => {
               </NavLink>
             </li>
             <li>
+              <NavLink to="/formik-abstractions" className={activeClass}>
+                Formik Abstraction
+              </NavLink>
+            </li>
+            <li>
               <NavLink to="/about" className={activeClass}>
                 About
               </NavLink>
@@ -56,6 +62,10 @@ export const Navigation = () => {
           <Route path="/register" element={<RegisterPage />}></Route>
           <Route path="/formik-basic" element={<FormikBasicPage />}></Route>
           <Route path="/formik-yup" element={<FormikYupPage />}></Route>
+          <Route
+            path="/formik-abstractions"
+            element={<FormikAbstractaction />}
+          ></Route>
           <Route
             path="/formik-components"
             element={<FormikComponents />}
